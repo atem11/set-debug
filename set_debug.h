@@ -191,7 +191,7 @@ private:
             }
         }
 
-        T &operator*() const {
+        T const &operator*() const {
             check();
             assert(ptr != base->root);
             return static_cast<node *>(ptr)->value;
@@ -206,6 +206,12 @@ private:
             base = other.base;
             insert_iter();
             return *this;
+        }
+
+        T const *operator->() {
+            check();
+            assert(ptr != base->root);
+            return &(static_cast<node *>(ptr)->value);
         }
 
         friend bool operator==(my_iterator const &a, my_iterator const &b) {
