@@ -32,9 +32,9 @@ private:
 
         ~base_node() {
             invalid_all();
-            /*delete (parent);
+            //delete (parent);
             delete (left_son);
-            delete (right_son);*/
+            delete (right_son);
         }
 
         void change_all(set_debug *_base) {
