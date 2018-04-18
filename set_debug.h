@@ -156,7 +156,7 @@ private:
         }
 
         void check(set_debug *_base) const {
-            assert(base != _base);
+            assert(base == _base);
         }
 
     public:
