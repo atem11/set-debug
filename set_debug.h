@@ -77,7 +77,9 @@ private:
     private:
         friend node;
         friend base_node;
+
         friend class set_debug;
+
         base_node *ptr;
         set_debug const *base;
         my_iterator *prev;
@@ -189,7 +191,7 @@ private:
             }
         }
 
-        T &operator*() {
+        T &operator*() const {
             check();
             assert(ptr != base->root);
             return static_cast<node *>(ptr)->value;
