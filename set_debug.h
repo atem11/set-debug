@@ -117,10 +117,6 @@ private:
             prev = nullptr;
         }
 
-        void check() const {
-            assert(base != nullptr);
-        }
-
         base_node *next_node(base_node *_root) {
             if (_root->right_son == nullptr) {
                 while (_root->parent != nullptr && _root->parent->right_son == _root) {
@@ -154,8 +150,16 @@ private:
             return _root;
         }
 
+        void check() const {
+            assert(base != nullptr);
+        }
 
     public:
+
+        void check(set_debug *_base) const {
+            assert(base != _base);
+        }
+
         my_iterator() : ptr(nullptr),
                         base(nullptr),
                         prev(nullptr),
@@ -445,6 +449,7 @@ public:
 
     const_iterator erase(const_iterator elem) {
         assert(elem != end());
+        elem.check(this);
         const_iterator copy(elem);
         ++copy;
         eraseNode(elem.getNode());
