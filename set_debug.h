@@ -88,6 +88,7 @@ private:
         }
 
         void delete_iter() {
+            //if (prev == nullptr) {
             if (this == ptr->start) {
                 ptr->start = next;
                 if (next) {
@@ -218,13 +219,13 @@ private:
         friend void swap(my_iterator &a, my_iterator &b) {
             a.check();
             b.check();
-            assert(a.base == b.base);
             if (a == b) {
                 return;
             }
             a.delete_iter();
             b.delete_iter();
             std::swap(a.ptr, b.ptr);
+            std::swap(a.base, b.base);
             a.insert_iter();
             b.insert_iter();
         }
