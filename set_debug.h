@@ -155,12 +155,11 @@ private:
             assert(base != nullptr);
         }
 
-
-    public:
-
         void check(set_debug *_base) const {
             assert(base != _base);
         }
+
+    public:
 
         my_iterator() : ptr(nullptr),
                         base(nullptr),
