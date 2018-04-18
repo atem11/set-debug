@@ -314,7 +314,7 @@ private:
                 tmp->right_son = _ptr->right_son;
             } else {
                 tmp->parent = _ptr->parent;
-                tmp->right_son = nullptr;
+                //tmp->right_son = nullptr;
             }
             tmp->left_son = _ptr->left_son;
             if (tmp->right_son != nullptr) {
