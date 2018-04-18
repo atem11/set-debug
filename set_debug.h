@@ -32,7 +32,6 @@ private:
 
         ~base_node() {
             invalid_all();
-            //delete (parent);
             delete (left_son);
             delete (right_son);
         }
@@ -52,6 +51,14 @@ private:
                 temp = temp->next;
             }
             this->start = nullptr;
+        }
+
+        void swap_all(base_node *_root) {
+            my_iterator *temp = this->start;
+            while (temp != nullptr) {
+                temp->ptr = _root;
+                temp = temp->next;
+            }
         }
     };
 
@@ -342,7 +349,7 @@ private:
         _ptr->parent = nullptr;
         _ptr->left_son = nullptr;
         _ptr->right_son = nullptr;
-        delete _ptr;
+        delete static_cast<node *>(_ptr);
     }
 
     base_node *root;
@@ -355,6 +362,8 @@ public:
     friend void swap(set_debug &a, set_debug &b) {
         a.walk(a.root, &b);
         b.walk(b.root, &a);
+        a.root->swap_all(b.root);
+        b.root->swap_all(a.root);
         std::swap(a.root, b.root);
     }
 
@@ -400,6 +409,7 @@ public:
         root->invalid_all();
         delete (root->right_son);
         delete (root->left_son);
+        root->left_son = root->right_son = nullptr;
     }
 
     std::pair<const_iterator, bool> insert(T const &elem) {
