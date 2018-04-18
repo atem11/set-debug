@@ -77,6 +77,7 @@ private:
     private:
         friend node;
         friend base_node;
+        friend class set_debug;
         base_node *ptr;
         set_debug const *base;
         my_iterator *prev;
@@ -153,6 +154,7 @@ private:
         void check() const {
             assert(base != nullptr);
         }
+
 
     public:
 
